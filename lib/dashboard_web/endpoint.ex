@@ -7,7 +7,7 @@ defmodule DashboardWeb.Endpoint do
   @session_options [
     store: :cookie,
     key: "_dashboard_key",
-    signing_salt: "beItdAmi"
+    signing_salt: "PQiFey9T"
   ]
 
   socket "/socket", DashboardWeb.UserSocket,
@@ -15,6 +15,12 @@ defmodule DashboardWeb.Endpoint do
     longpoll: false
 
   socket "/live", Phoenix.LiveView.Socket, websocket: [connect_info: [session: @session_options]]
+
+  plug Plug.Static,
+    at: "/kaffy",
+    from: :kaffy,
+    gzip: false,
+    only: ~w(assets)
 
   # Serve at "/" the static files from "priv/static" directory.
   #

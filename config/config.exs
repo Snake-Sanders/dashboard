@@ -7,16 +7,15 @@
 # General application configuration
 use Mix.Config
 
-config :dashboard,
-  ecto_repos: [Dashboard.Repo]
+config :dashboard, ecto_repos: [Dashboard.Repo], generators: [binary_id: true]
 
 # Configures the endpoint
 config :dashboard, DashboardWeb.Endpoint,
   url: [host: "localhost"],
-  secret_key_base: "XVVKWZT1XIwHwCgpb6zf1NS73f3IzA0gtv7P5m6qxXakFfBq+6grTbx6b+63PtPh",
+  secret_key_base: "gezCztOVJKD3K7/pRxOCsVz2/26KpvIXP6iwcLAtR6kikK55jKMTPDbjxLrheGDc",
   render_errors: [view: DashboardWeb.ErrorView, accepts: ~w(html json), layout: false],
   pubsub_server: Dashboard.PubSub,
-  live_view: [signing_salt: "Du9vfZ6o"]
+  live_view: [signing_salt: "ywIHqVZp"]
 
 # Configures Elixir's Logger
 config :logger, :console,
@@ -25,6 +24,11 @@ config :logger, :console,
 
 # Use Jason for JSON parsing in Phoenix
 config :phoenix, :json_library, Jason
+
+config :kaffy,
+   otp_app: :dashboard,
+   ecto_repo: Dashboard.Repo,
+   router: DashboardWeb.Router
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
