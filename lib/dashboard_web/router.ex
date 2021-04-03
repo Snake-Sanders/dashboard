@@ -1,5 +1,6 @@
 defmodule DashboardWeb.Router do
   use DashboardWeb, :router
+  use Kaffy.Routes #, scope: "/admin", pipe_through: [:some_plug, :authenticate]
 
   pipeline :browser do
     plug :accepts, ["html"]
@@ -37,7 +38,7 @@ defmodule DashboardWeb.Router do
 
     scope "/" do
       pipe_through :browser
-      live_dashboard "/dashboard", metrics: DashboardWeb.Telemetry
+      live_dashboard "/dashboard", metrics: DashboardWeb.Telemetry, ecto_repos: [Dashboard.Repo]
     end
   end
 end
